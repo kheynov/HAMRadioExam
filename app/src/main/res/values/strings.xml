@@ -1,9 +1,8 @@
 <resources>
-    <string name="app_name">Радиолюбительский экзамен</string>
+    <string name="app_name">HAM Radio Exam</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="nav_header_title">Радиолюбительский помощник</string>
-    <string name="nav_header_subtitle">Станьте радиолюбителем уже сейчас</string>
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Настройки</string>
 </resources>

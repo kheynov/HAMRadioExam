@@ -71,17 +71,17 @@ public class StartActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_camera) {
+        if (id == R.id.nav_exam) {
             // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
+        } else if (id == R.id.nav_study) {
 
-        } else if (id == R.id.nav_slideshow) {
+        } else if (id == R.id.nav_book) {
 
-        } else if (id == R.id.nav_manage) {
+        } else if (id == R.id.nav_stats) {
 
-        } else if (id == R.id.nav_share) {
+        } else if (id == R.id.nav_about) {
 
-        } else if (id == R.id.nav_send) {
+        } else if (id == R.id.nav_settings) {
 
         }
 
@@ -100,8 +100,10 @@ public class StartActivity extends AppCompatActivity
     }
 
     public void exit(View view) {
+        finish();
     }
 
     public void exit(MenuItem item) {
+        finish();
     }
 }

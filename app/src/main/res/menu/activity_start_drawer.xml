@@ -5,35 +5,36 @@
     <!--TODO: Добавить иконки соответствующие описанию-->
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/nav_camera"
-            android:icon="@drawable/ic_menu_camera"
+            android:id="@+id/nav_exam"
+            android:icon="@drawable/ic_menu_exam"
             android:title="Экзамен" />
         <item
-            android:id="@+id/nav_gallery"
-            android:icon="@drawable/ic_menu_gallery"
+            android:id="@+id/nav_study"
+            android:icon="@drawable/ic_menu_study"
             android:title="Обучение" />
         <item
-            android:id="@+id/nav_slideshow"
-            android:icon="@drawable/ic_menu_slideshow"
+            android:id="@+id/nav_book"
+            android:icon="@drawable/ic_menu_book"
             android:title="Справочник" />
         <item
-            android:id="@+id/nav_manage"
-            android:icon="@drawable/ic_menu_manage"
+            android:id="@+id/nav_stats"
+            android:icon="@drawable/ic_menu_stats"
             android:title="Статистика" />
     </group>
 
     <item android:title="Приложение">
         <menu>
             <item
-                android:id="@+id/nav_share"
-                android:icon="@drawable/ic_menu_share"
+                android:id="@+id/nav_about"
+                android:icon="@drawable/ic_menu_about"
                 android:title="О приложении" />
             <item
-                android:id="@+id/nav_send"
-                android:icon="@drawable/ic_menu_send"
+                android:id="@+id/nav_settings"
+                android:icon="@drawable/ic_menu_settings"
                 android:title="Настройки" />
             <item
                 android:onClick="exit"
+                android:icon="@drawable/ic_menu_exit"
                 android:title="Выйти" />
         </menu>
     </item>
