@@ -1,8 +1,10 @@
 package com.example.vlad.hamradioexam;
 
+import android.app.Fragment;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -11,6 +13,8 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+
+import java.util.Objects;
 
 public class StartActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -68,39 +72,37 @@ public class StartActivity extends AppCompatActivity
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-        // Handle navigation view item clicks here.
+        android.support.v4.app.Fragment fragment = null;
+        Class fragmentClass = null;
         int id = item.getItemId();
 
         if (id == R.id.nav_exam) {
-            // Handle the camera action
+            fragmentClass = ExamFragment.class;
         } else if (id == R.id.nav_study) {
-
+            fragmentClass = StudyFragment.class;
         } else if (id == R.id.nav_book) {
-
+            fragmentClass = BookFragment.class;
         } else if (id == R.id.nav_stats) {
-
+            return true;
         } else if (id == R.id.nav_about) {
 
         } else if (id == R.id.nav_settings) {
 
         }
 
+        try{
+            fragment = (android.support.v4.app.Fragment) Objects.requireNonNull(fragmentClass).newInstance();
+        } catch (IllegalAccessException | InstantiationException e) {
+            e.printStackTrace();
+        }
+
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        fragmentManager.beginTransaction().add(R.id.container, fragment).commit();
+        fragmentManager.popBackStack();
+
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
-    }
-
-    public void Start_learning(View view) {
-    }
-
-    public void start_exam(View view) {
-    }
-
-    public void stats(View view) {
-    }
-
-    public void exit(View view) {
-        finish();
     }
 
     public void exit(MenuItem item) {
