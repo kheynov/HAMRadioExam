@@ -12,6 +12,7 @@
         android:textSize="24sp"
         android:gravity="center"
         android:layout_height="match_parent"
+        android:textColor="@color/colorTextPrimary"
         android:text="Активити - справочник" />
 
 </LinearLayout>

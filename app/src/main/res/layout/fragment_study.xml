@@ -12,6 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center_horizontal|center_vertical"
+        android:textColor="@color/colorTextPrimary"
         android:text="Активити - обучение"
         android:textSize="24sp" />
 

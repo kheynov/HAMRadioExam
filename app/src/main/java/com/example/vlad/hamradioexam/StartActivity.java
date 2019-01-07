@@ -1,6 +1,6 @@
 package com.example.vlad.hamradioexam;
 
-import android.app.Fragment;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
@@ -10,9 +10,9 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 
 import java.util.Objects;
 
@@ -26,7 +26,7 @@ public class StartActivity extends AppCompatActivity
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-
+        //Активируем шторку управления
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -35,6 +35,20 @@ public class StartActivity extends AppCompatActivity
 
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+
+        //Запускаем активити с обучение по умолчанию после запуска приложения
+        android.support.v4.app.Fragment fragment = null;
+        Class fragmentClass = StudyFragment.class;
+        try{
+            fragment = (android.support.v4.app.Fragment) Objects.requireNonNull(fragmentClass).newInstance();
+        } catch (IllegalAccessException | InstantiationException e) {
+            e.printStackTrace();
+        }
+
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        fragmentManager.beginTransaction().add(R.id.container, fragment).commit();
+        //--------------------------------------------------------------
     }
 
     @Override
@@ -56,25 +70,22 @@ public class StartActivity extends AppCompatActivity
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
-            return true;
+            Intent intent = new Intent(StartActivity.this, SettingsActivity.class);
+            startActivity(intent);
         }
-
         return super.onOptionsItemSelected(item);
     }
 
-    @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         android.support.v4.app.Fragment fragment = null;
         Class fragmentClass = null;
         int id = item.getItemId();
+
+        boolean isActivity = false;//TODO: костыль, пофиксить
 
         if (id == R.id.nav_exam) {
             fragmentClass = ExamFragment.class;
@@ -83,23 +94,26 @@ public class StartActivity extends AppCompatActivity
         } else if (id == R.id.nav_book) {
             fragmentClass = BookFragment.class;
         } else if (id == R.id.nav_stats) {
-            return true;
+            fragmentClass = StatsFragment.class;
         } else if (id == R.id.nav_about) {
-
+            Intent intent = new Intent(StartActivity.this, AboutActivity.class);
+            startActivity(intent);
+            isActivity = true;
         } else if (id == R.id.nav_settings) {
-
+            Intent intent = new Intent(StartActivity.this, SettingsActivity.class);
+            startActivity(intent);
+            isActivity = true;
         }
 
-        try{
-            fragment = (android.support.v4.app.Fragment) Objects.requireNonNull(fragmentClass).newInstance();
-        } catch (IllegalAccessException | InstantiationException e) {
-            e.printStackTrace();
+        if (!isActivity) {
+            try {
+                fragment = (android.support.v4.app.Fragment) Objects.requireNonNull(fragmentClass).newInstance();
+            } catch (IllegalAccessException | NullPointerException | InstantiationException e) {
+                e.printStackTrace();
+            }
+            FragmentManager fragmentManager = getSupportFragmentManager();
+            fragmentManager.beginTransaction().add(R.id.container, fragment).commit();
         }
-
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        fragmentManager.beginTransaction().add(R.id.container, fragment).commit();
-        fragmentManager.popBackStack();
-
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;

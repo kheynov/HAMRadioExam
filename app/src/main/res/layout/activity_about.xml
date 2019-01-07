@@ -2,17 +2,14 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:orientation="vertical"
     android:layout_height="match_parent"
-    android:background="#FFFFFF"
-    tools:context=".StatsFragment">
-
+    android:orientation="vertical"
+    tools:context=".AboutActivity">
     <TextView
         android:layout_width="match_parent"
-        android:gravity="center"
-        android:textSize="24sp"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical|center_horizontal"
         android:textColor="@color/colorTextPrimary"
-        android:text="Активити - статистика" />
-
+        android:textSize="24sp"
+        android:text="Активити - о приложении"/>
 </LinearLayout>

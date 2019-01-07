@@ -4,15 +4,14 @@
     android:layout_width="match_parent"
     android:orientation="vertical"
     android:layout_height="match_parent"
-    android:background="#FFFFFF"
-    tools:context=".StatsFragment">
+    tools:context=".SettingsActivity">
 
     <TextView
+        android:id="@+id/textView"
         android:layout_width="match_parent"
-        android:gravity="center"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical|center_horizontal"
         android:textSize="24sp"
-        android:layout_height="match_parent"
         android:textColor="@color/colorTextPrimary"
-        android:text="Активити - статистика" />
-
+        android:text="Активити - настройки" />
 </LinearLayout>

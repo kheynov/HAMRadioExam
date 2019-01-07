@@ -7,18 +7,22 @@
         <item
             android:id="@+id/nav_exam"
             android:icon="@drawable/ic_menu_exam"
+            android:textColor="@color/colorTextPrimary"
             android:title="Экзамен" />
         <item
             android:id="@+id/nav_study"
             android:icon="@drawable/ic_menu_study"
+            android:textColor="@color/colorTextPrimary"
             android:title="Обучение" />
         <item
             android:id="@+id/nav_book"
             android:icon="@drawable/ic_menu_book"
+            android:textColor="@color/colorTextPrimary"
             android:title="Справочник" />
         <item
             android:id="@+id/nav_stats"
             android:icon="@drawable/ic_menu_stats"
+            android:textColor="@color/colorTextPrimary"
             android:title="Статистика" />
     </group>
 
@@ -27,14 +31,17 @@
             <item
                 android:id="@+id/nav_about"
                 android:icon="@drawable/ic_menu_about"
+                android:textColor="@color/colorTextPrimary"
                 android:title="О приложении" />
             <item
                 android:id="@+id/nav_settings"
                 android:icon="@drawable/ic_menu_settings"
+                android:textColor="@color/colorTextPrimary"
                 android:title="Настройки" />
             <item
                 android:onClick="exit"
                 android:icon="@drawable/ic_menu_exit"
+                android:textColor="@color/colorTextPrimary"
                 android:title="Выйти" />
         </menu>
     </item>
