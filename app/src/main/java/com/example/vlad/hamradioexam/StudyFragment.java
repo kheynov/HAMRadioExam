@@ -1,5 +1,6 @@
 package com.example.vlad.hamradioexam;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.database.Cursor;
@@ -8,11 +9,14 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import java.util.Objects;
@@ -30,6 +34,7 @@ public class StudyFragment extends Fragment {
     TextView question_variant4;
     Button last_question_button;
     Button next_question_button;
+    LinearLayout mainLayout;
 
     SharedPreferences sharedPreferences;
 
@@ -69,6 +74,7 @@ public class StudyFragment extends Fragment {
         cursor.close();
     }
 
+    @SuppressLint("ClickableViewAccessibility")
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -90,6 +96,7 @@ public class StudyFragment extends Fragment {
         question_variant2 = view.findViewById(R.id.study_question_variant2);
         question_variant3 = view.findViewById(R.id.study_question_variant3);
         question_variant4 = view.findViewById(R.id.study_question_variant4);
+        mainLayout = view.findViewById(R.id.study_main_layout);
 
         if (!sharedPreferences.contains(APP_PREFERENCES_LAST_QUESTION_STUDY)){
             question_counter = 1;
@@ -100,6 +107,23 @@ public class StudyFragment extends Fragment {
         showQuestion(DB);//открываем при загрузке
 
 
+        mainLayout.setOnTouchListener(new OnSwipeTouchListener(getContext()){
+            @Override
+            public void onSwipeLeft() {
+                super.onSwipeLeft();
+                Log.i("INFO", "Swiped left");
+                question_counter--;
+                showQuestion(DB);
+            }
+
+            @Override
+            public void onSwipeRight() {
+                super.onSwipeRight();
+                Log.i("INFO", "Swiped right");
+                question_counter++;
+                showQuestion(DB);
+            }
+        });
 
         last_question_button.setOnClickListener(new View.OnClickListener() {
             @Override
