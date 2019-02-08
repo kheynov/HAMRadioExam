@@ -13,6 +13,6 @@
         android:textSize="24sp"
         android:layout_height="match_parent"
         android:textColor="@color/colorTextPrimary"
-        android:text="Активити - статистика" />
+        android:text="Статистика" />
 
 </LinearLayout>

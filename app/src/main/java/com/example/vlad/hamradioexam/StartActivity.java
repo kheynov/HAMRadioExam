@@ -2,8 +2,10 @@ package com.example.vlad.hamradioexam;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -12,11 +14,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import java.util.Objects;
 
 public class StartActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+
+    private static long back_pressed;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,7 +44,7 @@ public class StartActivity extends AppCompatActivity
         //Запускаем активити с обучение по умолчанию после запуска приложения
         android.support.v4.app.Fragment fragment = null;
         Class fragmentClass = StudyFragment.class;
-        try{
+        try {
             fragment = (android.support.v4.app.Fragment) Objects.requireNonNull(fragmentClass).newInstance();
         } catch (IllegalAccessException | InstantiationException e) {
             e.printStackTrace();
@@ -48,16 +53,6 @@ public class StartActivity extends AppCompatActivity
         FragmentManager fragmentManager = getSupportFragmentManager();
         fragmentManager.beginTransaction().add(R.id.container, fragment).commit();
         //--------------------------------------------------------------
-    }
-
-    @Override
-    public void onBackPressed() {
-        DrawerLayout drawer = findViewById(R.id.drawer_layout);
-        if (drawer.isDrawerOpen(GravityCompat.START)) {
-            drawer.closeDrawer(GravityCompat.START);
-        } else {
-            super.onBackPressed();
-        }
     }
 
     @Override
@@ -72,8 +67,16 @@ public class StartActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.action_settings) {
-            Intent intent = new Intent(StartActivity.this, SettingsActivity.class);
-            startActivity(intent);
+            android.support.v4.app.Fragment fragment = null;
+            Class fragmentClass = SettingsFragment.class;
+            try {
+                fragment = (android.support.v4.app.Fragment) Objects.requireNonNull(fragmentClass).newInstance();
+            } catch (IllegalAccessException | InstantiationException e) {
+                e.printStackTrace();
+            }
+
+            FragmentManager fragmentManager = getSupportFragmentManager();
+            fragmentManager.beginTransaction().add(R.id.container, fragment).commit();
         }
         return super.onOptionsItemSelected(item);
     }
@@ -95,24 +98,19 @@ public class StartActivity extends AppCompatActivity
         } else if (id == R.id.nav_stats) {
             fragmentClass = StatsFragment.class;
         } else if (id == R.id.nav_about) {
-            Intent intent = new Intent(StartActivity.this, AboutActivity.class);
-            startActivity(intent);
-            isActivity = true;
+            fragmentClass = AboutFragment.class;
         } else if (id == R.id.nav_settings) {
-            Intent intent = new Intent(StartActivity.this, SettingsActivity.class);
-            startActivity(intent);
-            isActivity = true;
+            fragmentClass = SettingsFragment.class;
         }
 
-        if (!isActivity) {
-            try {
-                fragment = (android.support.v4.app.Fragment) Objects.requireNonNull(fragmentClass).newInstance();
-            } catch (IllegalAccessException | NullPointerException | InstantiationException e) {
-                e.printStackTrace();
-            }
-            FragmentManager fragmentManager = getSupportFragmentManager();
-            fragmentManager.beginTransaction().add(R.id.container, fragment).commit();
+        try {
+            fragment = (android.support.v4.app.Fragment) Objects.requireNonNull(fragmentClass).newInstance();
+        } catch (IllegalAccessException | NullPointerException | InstantiationException e) {
+            e.printStackTrace();
         }
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        fragmentManager.beginTransaction().add(R.id.container, fragment).commit();
+
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
@@ -120,5 +118,22 @@ public class StartActivity extends AppCompatActivity
 
     public void exit(MenuItem item) {
         finish();
+    }
+
+    @Override
+    public void onBackPressed() {
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
+        if (back_pressed + 1000 > System.currentTimeMillis()){
+            super.onBackPressed();
+            finish();
+        }
+        else{
+            if(drawer.isDrawerOpen(GravityCompat.START)){
+                drawer.closeDrawer(GravityCompat.START);
+            }else{
+                Snackbar.make(Objects.requireNonNull(getCurrentFocus()), "Нажмите еще раз для выхода", Snackbar.LENGTH_SHORT).show();
+            }
+        }
+        back_pressed = System.currentTimeMillis();
     }
 }
