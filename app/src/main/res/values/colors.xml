@@ -6,4 +6,5 @@
     <color name="colorTextPrimary">#191919</color>
     <color name="colorTextSecondary">#303030</color>
     <color name="correct_answer_color">#cc3010</color>
+    <color name="transparent">#00ffffff</color>
 </resources>

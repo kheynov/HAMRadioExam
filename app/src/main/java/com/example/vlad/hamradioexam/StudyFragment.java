@@ -5,7 +5,6 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
@@ -13,10 +12,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.ScrollView;
 import android.widget.TextView;
 
 import java.util.Objects;
@@ -32,9 +29,8 @@ public class StudyFragment extends Fragment {
     TextView question_variant2;
     TextView question_variant3;
     TextView question_variant4;
-    Button last_question_button;
-    Button next_question_button;
-    LinearLayout mainLayout;
+    ImageButton last_question_button;
+    ImageButton next_question_button;
 
     SharedPreferences sharedPreferences;
 
@@ -71,6 +67,74 @@ public class StudyFragment extends Fragment {
                 question_variant4.setTextColor(getResources().getColor(R.color.correct_answer_color));
                 break;
         }
+
+        int image_id = cursor.getInt(7);
+        Log.i("INFO", String.valueOf(image_id));
+
+        if (image_id >= 1 && image_id <= 18) {
+            question_image.setVisibility(View.VISIBLE);
+
+            switch (image_id) {
+                case 1:
+                    question_image.setImageResource(getResources().getIdentifier("@drawable/exam1", "drawable", Objects.requireNonNull(getActivity()).getPackageName()));
+                    break;
+                case 2:
+                    question_image.setImageResource(getResources().getIdentifier("@drawable/exam2", "drawable", Objects.requireNonNull(getActivity()).getPackageName()));
+                    break;
+                case 3:
+                    question_image.setImageResource(getResources().getIdentifier("@drawable/exam3", "drawable", Objects.requireNonNull(getActivity()).getPackageName()));
+                    break;
+                case 4:
+                    question_image.setImageResource(getResources().getIdentifier("@drawable/exam4", "drawable", Objects.requireNonNull(getActivity()).getPackageName()));
+                    break;
+                case 5:
+                    question_image.setImageResource(getResources().getIdentifier("@drawable/exam5", "drawable", Objects.requireNonNull(getActivity()).getPackageName()));
+                    break;
+                case 6:
+                    question_image.setImageResource(getResources().getIdentifier("@drawable/exam6", "drawable", Objects.requireNonNull(getActivity()).getPackageName()));
+                    break;
+                case 7:
+                    question_image.setImageResource(getResources().getIdentifier("@drawable/exam7", "drawable", Objects.requireNonNull(getActivity()).getPackageName()));
+                    break;
+                case 8:
+                    question_image.setImageResource(getResources().getIdentifier("@drawable/exam8", "drawable", Objects.requireNonNull(getActivity()).getPackageName()));
+                    break;
+                case 9:
+                    question_image.setImageResource(getResources().getIdentifier("@drawable/exam9", "drawable", Objects.requireNonNull(getActivity()).getPackageName()));
+                    break;
+                case 10:
+                    question_image.setImageResource(getResources().getIdentifier("@drawable/exam10", "drawable", Objects.requireNonNull(getActivity()).getPackageName()));
+                    break;
+                case 11:
+                    question_image.setImageResource(getResources().getIdentifier("@drawable/exam11", "drawable", Objects.requireNonNull(getActivity()).getPackageName()));
+                    break;
+                case 12:
+                    question_image.setImageResource(getResources().getIdentifier("@drawable/exam12", "drawable", Objects.requireNonNull(getActivity()).getPackageName()));
+                    break;
+                case 13:
+                    question_image.setImageResource(getResources().getIdentifier("@drawable/exam13", "drawable", Objects.requireNonNull(getActivity()).getPackageName()));
+                    break;
+                case 14:
+                    question_image.setImageResource(getResources().getIdentifier("@drawable/exam14", "drawable", Objects.requireNonNull(getActivity()).getPackageName()));
+                    break;
+                case 15:
+                    question_image.setImageResource(getResources().getIdentifier("@drawable/exam15", "drawable", Objects.requireNonNull(getActivity()).getPackageName()));
+                    break;
+                case 16:
+                    question_image.setImageResource(getResources().getIdentifier("@drawable/exam16", "drawable", Objects.requireNonNull(getActivity()).getPackageName()));
+                    break;
+                case 17:
+                    question_image.setImageResource(getResources().getIdentifier("@drawable/exam17", "drawable", Objects.requireNonNull(getActivity()).getPackageName()));
+                    break;
+                case 18:
+                    question_image.setImageResource(getResources().getIdentifier("@drawable/exam18", "drawable", Objects.requireNonNull(getActivity()).getPackageName()));
+                    break;
+            }
+
+        } else {
+            question_image.setVisibility(View.INVISIBLE);
+            question_image.setImageResource(R.color.transparent);
+        }
         cursor.close();
     }
 
@@ -96,34 +160,14 @@ public class StudyFragment extends Fragment {
         question_variant2 = view.findViewById(R.id.study_question_variant2);
         question_variant3 = view.findViewById(R.id.study_question_variant3);
         question_variant4 = view.findViewById(R.id.study_question_variant4);
-        mainLayout = view.findViewById(R.id.study_main_layout);
-
-        if (!sharedPreferences.contains(APP_PREFERENCES_LAST_QUESTION_STUDY)){
+        if (!sharedPreferences.contains(APP_PREFERENCES_LAST_QUESTION_STUDY)) {
             question_counter = 1;
-        }else{
+        } else {
             question_counter = sharedPreferences.getInt(APP_PREFERENCES_LAST_QUESTION_STUDY, 1);
         }
 
         showQuestion(DB);//открываем при загрузке
 
-
-        mainLayout.setOnTouchListener(new OnSwipeTouchListener(getContext()){
-            @Override
-            public void onSwipeLeft() {
-                super.onSwipeLeft();
-                Log.i("INFO", "Swiped left");
-                question_counter--;
-                showQuestion(DB);
-            }
-
-            @Override
-            public void onSwipeRight() {
-                super.onSwipeRight();
-                Log.i("INFO", "Swiped right");
-                question_counter++;
-                showQuestion(DB);
-            }
-        });
 
         last_question_button.setOnClickListener(new View.OnClickListener() {
             @Override
