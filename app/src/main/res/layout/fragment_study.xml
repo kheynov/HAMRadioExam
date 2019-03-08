@@ -12,7 +12,7 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:layout_weight="2">
 
         <LinearLayout
@@ -27,7 +27,6 @@
                 android:id="@+id/study_question_number"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Вопрос №"
                 android:textAlignment="center"
                 android:textColor="@color/colorTextPrimary"
                 android:textSize="24sp" />
@@ -40,24 +39,26 @@
                 android:id="@+id/study_question_image"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_weight="1.5"
                 android:maxHeight="1dp"
                 android:src="@android:color/transparent"
-                android:visibility="invisible" />
+                android:visibility="invisible"
+                android:contentDescription="@string/image_of_question_if_needed" />
             <TextView
                 android:id="@+id/study_question_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Текст вопроса"
-
                 android:textColor="@color/colorTextPrimary"
                 android:textSize="18sp" />
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="10dp" />
 
 
             <TextView
                 android:id="@+id/study_question_variant1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Вариант №1"
                 android:textColor="@color/colorTextPrimary"
                 android:textSize="18sp" />
 
@@ -69,7 +70,6 @@
                 android:id="@+id/study_question_variant2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Вариант №2"
                 android:textColor="@color/colorTextPrimary"
                 android:textSize="18sp" />
 
@@ -81,7 +81,6 @@
                 android:id="@+id/study_question_variant3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Вариант №3"
                 android:textColor="@color/colorTextPrimary"
                 android:textSize="18sp" />
 
@@ -93,7 +92,6 @@
                 android:id="@+id/study_question_variant4"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Вариант №4"
                 android:textColor="@color/colorTextPrimary"
                 android:textSize="18sp" />
         </LinearLayout>
@@ -103,6 +101,7 @@
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:layout_gravity="bottom"
+        android:background="@color/colorAccent"
         android:orientation="horizontal">
 
         <ImageButton
@@ -111,7 +110,9 @@
             android:layout_height="match_parent"
             android:src="@drawable/ic_arrow_back_black_24dp"
             android:layout_weight="1"
-            android:gravity="bottom" />
+            android:background="@color/colorAccent"
+            android:gravity="bottom"
+            tools:ignore="ContentDescription" />
 
         <ImageButton
             android:id="@+id/next_question"
@@ -119,7 +120,9 @@
             android:layout_height="match_parent"
             android:src="@drawable/ic_arrow_forward_black_24dp"
             android:layout_weight="1"
-            android:gravity="bottom" />
+            android:background="@color/colorAccent"
+            android:gravity="bottom"
+            tools:ignore="ContentDescription" />
 
     </LinearLayout>
 

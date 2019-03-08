@@ -12,7 +12,6 @@
         android:gravity="center"
         android:textSize="24sp"
         android:layout_height="match_parent"
-        android:textColor="@color/colorTextPrimary"
-        android:text="Статистика" />
+        android:textColor="@color/colorTextPrimary" />
 
 </LinearLayout>

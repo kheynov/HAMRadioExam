@@ -12,7 +12,5 @@
         android:layout_height="match_parent"
         android:gravity="center"
         android:textSize="24sp"
-        android:textColor="@color/colorTextPrimary"
-        android:text="Настройки" />
-
+        android:textColor="@color/colorTextPrimary" />
 </FrameLayout>

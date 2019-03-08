@@ -84,15 +84,18 @@ public class StartActivity extends AppCompatActivity
         Class fragmentClass = null;
         int id = item.getItemId();
 
-        if (id == R.id.nav_exam) {
+        /*if (id == R.id.nav_exam) {
             fragmentClass = ExamFragment.class;
-        } else if (id == R.id.nav_study) {
+        } else */
+        if (id == R.id.nav_study) {
             fragmentClass = StudyFragment.class;
-        } else if (id == R.id.nav_book) {
+        }
+        /*else if (id == R.id.nav_book) {
             fragmentClass = BookFragment.class;
         } else if (id == R.id.nav_stats) {
             fragmentClass = StatsFragment.class;
-        } else if (id == R.id.nav_about) {
+        } */
+        else if (id == R.id.nav_about) {
             fragmentClass = AboutFragment.class;
         } else if (id == R.id.nav_settings) {
             fragmentClass = SettingsFragment.class;
@@ -118,14 +121,13 @@ public class StartActivity extends AppCompatActivity
     @Override
     public void onBackPressed() {
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
-        if (back_pressed + 1000 > System.currentTimeMillis()){
+        if (back_pressed + 1000 > System.currentTimeMillis()) {
             super.onBackPressed();
             finish();
-        }
-        else{
-            if(drawer.isDrawerOpen(GravityCompat.START)){
+        } else {
+            if (drawer.isDrawerOpen(GravityCompat.START)) {
                 drawer.closeDrawer(GravityCompat.START);
-            }else{
+            } else {
                 Snackbar.make(Objects.requireNonNull(getCurrentFocus()), "Нажмите еще раз для выхода", Snackbar.LENGTH_SHORT).show();
             }
         }
