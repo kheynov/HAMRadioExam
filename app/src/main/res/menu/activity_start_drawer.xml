@@ -8,21 +8,24 @@
             android:icon="@drawable/ic_menu_study"
             android:textColor="@color/colorTextPrimary"
             android:title="Обучение" />
-        <!--<item
+        <item
             android:id="@+id/nav_exam"
             android:icon="@drawable/ic_menu_exam"
+            android:visible="false"
             android:textColor="@color/colorTextPrimary"
             android:title="Экзамен" />
         <item
             android:id="@+id/nav_book"
             android:icon="@drawable/ic_menu_book"
+            android:visible="false"
             android:textColor="@color/colorTextPrimary"
             android:title="Справочник" />
         <item
             android:id="@+id/nav_stats"
             android:icon="@drawable/ic_menu_stats"
+            android:visible="false"
             android:textColor="@color/colorTextPrimary"
-            android:title="Статистика" />-->
+            android:title="Статистика" />
     </group>
 
     <item android:title="Приложение">
@@ -36,10 +39,12 @@
                 android:id="@+id/nav_settings"
                 android:icon="@drawable/ic_menu_settings"
                 android:textColor="@color/colorTextPrimary"
-                android:title="Настройки" />
+                android:title="Настройки"
+                android:visible="false" /><!--TODO: на время отключения фичи-->
+
             <item
-                android:onClick="exit"
                 android:icon="@drawable/ic_menu_exit"
+                android:onClick="exit"
                 android:textColor="@color/colorTextPrimary"
                 android:title="Выйти" />
         </menu>

@@ -4,10 +4,10 @@
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="nav_header_title">Радиолюбительский помощник</string>
     <string name="action_settings">Настройки</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="about_text">HAM Radio Exam - приложение позволяющее подготовиться к экзамену на радиолюбительскую категорию. в него входят все 426 вопросов из бидетов на все радиолюбительские категории с сайта Союза Радиолюбителей России.</string>
     <string name="year">2019 год</string>
     <string name="image_of_question_if_needed">Image of question if needed</string>
+    <string name="go_to_page">Перейти на страницу</string>
+    <string name="cancel">Отмена</string>
 </resources>
